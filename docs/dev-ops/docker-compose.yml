@@ -65,6 +65,7 @@ services:
       - 8081:8081
     environment:
       - REDIS_HOSTS=local:redis:6379
+#      - REDIS_HOSTS=local:admin:admin@redis:6379 # redis 配置 users.acl 账密则启动此配置，注释掉上一个配置【不使用密码的方式】。
       - HTTP_USER=admin
       - HTTP_PASSWORD=admin
     networks:
@@ -83,6 +84,7 @@ services:
       - 6379:6379
     volumes:
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+#      - ./redis/users.acl:/usr/local/etc/redis/users.acl
     command: redis-server /usr/local/etc/redis/redis.conf
     networks:
       - my-network
